@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:30:00 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/04/10 22:50:20 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/04/11 22:53:08 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,15 @@
 #include "get_next_line.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <limits.h>
+#include <string.h>
 
-
-
-char    *get_next_line(int fd);
-
-
-char    *ft_strchr(const char *s, int c);
-size_t  ft_strlen(const char *s);
-char    *ft_strdup(const char *s);
-void    *ft_calloc(size_t count, size_t size);
-char    *ft_substr(char const *s, unsigned int start, size_t len);
-char    *ft_strjoin(char const *s1, char const *s2);
-
-
-
-
+char            *get_next_line(int fd);
+size_t          ft_strlen(const char *s);
+char            *ft_strdup(const char *s);
+void            *ft_calloc(size_t count, size_t size);
+char            *ft_substr(char const *s, unsigned int start, size_t len);
+char            *ft_strjoin(char const *s1, char const *s2);
 
 #endif

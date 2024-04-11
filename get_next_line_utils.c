@@ -6,34 +6,16 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:30:13 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/04/10 22:49:27 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/04/11 22:53:02 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <unistd.h>
 #include <stdlib.h>
-
-// check for char in the string
-char    *ft_strchr(const char *s, int c)
-{
-    int     i;
-    char    cc;
-
-    if (!s)
-        return (NULL);
-    i = 0;
-    cc = (char) c;
-    while (s[i])
-    {
-        if (s[i] == cc)
-            return ((char *) &s[i]);
-        i++;
-    }
-    if (s[i] == c)
-        return ((char *) &s[i]);
-    return (NULL);
-}
+#include <fcntl.h>
+#include <limits.h>
+#include <string.h>
 
 // check the string length
 size_t  ft_strlen(const char *s)
