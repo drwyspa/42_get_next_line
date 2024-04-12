@@ -6,23 +6,23 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:30:00 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/04/11 22:53:08 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:17:43 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10 
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42 
+# endif
 
-#include "get_next_line.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <limits.h>
-#include <string.h>
+# include "get_next_line.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <string.h>
 
 char            *get_next_line(int fd);
 size_t          ft_strlen(const char *s);

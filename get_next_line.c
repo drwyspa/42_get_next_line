@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:29:47 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/04/11 22:56:50 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:17:42 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,7 @@
 #include <fcntl.h>
 #include <limits.h>
 #include <string.h>
-
-char    *get_next_line(int fd)
-{
-    static char *rest;
-    char        *line;
-    char        *buffer;
-
-    buffer = (char *) malloc((BUFFER_SIZE + 1) * sizeof(char));
-    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-    {
-        free(rest);
-        free(buffer);
-        rest = NULL;
-        buffer = NULL;
-        return (NULL);
-    }
-    if (!buffer)
-        return (NULL);
-    line = fill_line_buffer(fd, rest, buffer);
-    free(buffer);
-    buffer = NULL;
-    if(!line)
-        return (NULL);
-    rest = create_line(line);
-    return (line);
-}
+#include <stdio.h>
 
 // read the buffer and save some rest after \n is found
 static char *create_line(char *line_buffer)
@@ -62,6 +37,27 @@ static char *create_line(char *line_buffer)
     }
     line_buffer[i + 1] = '\0';
     return (rest);
+}
+
+// check for char in the string
+static char *ft_strchr(const char *s, int c)
+{
+    int     i;
+    char    cc;
+
+    if (!s)
+        return (NULL);
+    i = 0;
+    cc = (char) c;
+    while (s[i])
+    {
+        if (s[i] == cc)
+            return ((char *) &s[i]);
+        i++;
+    }
+    if (s[i] == c)
+        return ((char *) &s[i]);
+    return (NULL);
 }
 
 // read the buffer and fill the line until \n or \0
@@ -94,23 +90,38 @@ static char *fill_line_buffer(int fd, char *rest, char *buffer)
     return (rest);
 }
 
-// check for char in the string
-static char *ft_strchr(const char *s, int c)
+char    *get_next_line(int fd)
 {
-    int     i;
-    char    cc;
+    static char *rest;
+    char        *line;
+    char        *buffer;
 
-    if (!s)
-        return (NULL);
-    i = 0;
-    cc = (char) c;
-    while (s[i])
+    buffer = (char *) malloc((BUFFER_SIZE + 1) * sizeof(char));
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
     {
-        if (s[i] == cc)
-            return ((char *) &s[i]);
-        i++;
+        free(rest);
+        free(buffer);
+        rest = NULL;
+        buffer = NULL;
+        return (NULL);
     }
-    if (s[i] == c)
-        return ((char *) &s[i]);
-    return (NULL);
+    if (!buffer)
+        return (NULL);
+    line = fill_line_buffer(fd, rest, buffer);
+    free(buffer);
+    buffer = NULL;
+    if(!line)
+        return (NULL);
+    rest = create_line(line);
+    return (line);
+}
+
+int	main()
+{
+	int	fd;
+
+	fd = open("test.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	close(fd);
+	return (0);
 }
