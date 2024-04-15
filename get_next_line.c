@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:29:47 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/04/12 19:17:42 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/04/15 22:06:42 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char *create_line(char *line_buffer)
     ssize_t i;
 
     i = 0;
-    while (line_buffer[i] != '\n' || line_buffer[i] != '\0')
+    while (line_buffer[i] != '\n' && line_buffer[i] != '\0')
         i++;
     if (line_buffer[i] == 0 || line_buffer[i + 1] == 0)
         return (NULL);
@@ -116,12 +116,18 @@ char    *get_next_line(int fd)
     return (line);
 }
 
-int	main()
-{
-	int	fd;
+// int	main()
+// {
+// 	int	fd;
+//     int i;
 
-	fd = open("test.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	close(fd);
-	return (0);
-}
+// 	i = 0;
+//     fd = open("test.txt", O_RDONLY);
+// 	while (i < 8)
+//     {
+//         printf("%s", get_next_line(fd));
+//         i++;
+//     }
+// 	close(fd);
+// 	return (0);
+// }
