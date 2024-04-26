@@ -6,7 +6,7 @@
 /*   By: pjedrycz <p.jedryczkowski@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:29:47 by pjedrycz          #+#    #+#             */
-/*   Updated: 2024/04/16 18:47:29 by pjedrycz         ###   ########.fr       */
+/*   Updated: 2024/04/26 18:37:04 by pjedrycz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 	char		*buffer;
 
 	buffer = (char *) malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 && BUFFER_SIZE <= 0 && read(fd, 0, 0) < 0)
 	{
 		free(rest);
 		free(buffer);
